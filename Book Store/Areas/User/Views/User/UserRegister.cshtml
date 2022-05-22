@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "UserRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top:10px;">
+
+    @using (Html.BeginForm("UserRegister", "User", FormMethod.Post, new { @class = "Frm" }))
+    {
+    <h4 style="text-align:center;color:orangered;font-weight:bold;">@ViewBag.RepetitiveUser</h4><br />
+
+        <h2 style="text-align:center;color:#05123f;font-weight:bold;"> فرم ثبت کاربر جدبد </h2><br />
+
+        <p style="color:black">لطفا اطلاعات خود را با دقت وارد نمایید</p>
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="FullName" class="form-control" name="FullName" placeholder="نام و نام خانوادگی" required />
+        </div>
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="شماره تلفن همراه" required />
+        </div>
+
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Email" class="form-control" name="Email" placeholder="ایمیل" required />
+        </div>
+
+        <div class="form-group">
+            <input type="password" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Password" class="form-control" name="Password" placeholder="کلمه عبور" required /><br />
+            <button class="btn btn-danger">تایید</button>
+            @Html.ActionLink("قبلا ثبت نام کرده اید؟", "UserLogin", "User", new { Area = "User" }, new { @class = "message-alert" })
+
+
+        </div>
+    }
+
+
+</div>

@@ -1,0 +1,40 @@
+﻿@model Book_Store.Models.TBL_Writer
+@{
+    ViewBag.Title = "ShowWriterDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top:50px;">
+
+    <div class="row">
+
+        <div class="col-lg-4 col-md-3 col-sm-10" style="margin-bottom:20px;">
+            <img class="Writer-img" src="~/Content/img/Writers/@Model.Image" />
+            <ul id="ul-writer">
+                <li>نام : @Model.FullName</li>
+                <li>  سال تولد : @Model.Birthday میلادی</li>
+                <li>وفات : @Model.Deathdate میلادی</li>
+                @foreach(var items in Model.TBL_Product)
+                {
+                    <li>@items.Name</li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-8 col-md-9 col-sm-12">
+            <table class="table table-striped" id="tbl-writer-data" style="margin-top:80px;margin-bottom:100px;">
+                <tbody class="vtc">
+                    <tr>
+                        <td style="font-weight:bold;">نام : @Model.FullName</td>
+                        <td style="font-weight:bold;">  سال تولد : @Model.Birthday میلادی</td>
+                        <td style="font-weight:bold;"> وفات : @Model.Deathdate میلادی</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="text-align:justify;margin-bottom:50px;font-size:15px;">
+        @Html.Raw(Model.Writer_Content)
+    </div>
+   
+
+</div>

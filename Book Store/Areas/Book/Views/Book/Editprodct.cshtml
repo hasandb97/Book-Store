@@ -1,0 +1,208 @@
+﻿@model  Book_Store.Models.TBL_Product
+@{
+    ViewBag.Title = "Editprodct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+<div class="container" style="margin-top:10px;">
+
+    @using (Html.BeginForm("Editprodct", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="Frm" id="AddProductForm">
+
+        <h4 style="font-weight:bold;text-align:center;margin-top:50px;">ویرایش کتاب <strong style="color:darkorange">@Model.Name</strong></h4><br />
+        <p style="color:black">لطفا فیلدهای مربوطه را با اطلاعات مناسب پر کنید.</p>
+
+        <!--Name-->
+        <div class="form-group">
+            <label class="lbl">نام کتاب</label>
+            <input type="text" value="@Model.Name" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="BookName" class="form-control" name="BookName" placeholder="نام کتاب" required />
+        </div><hr />
+
+        <!--Shabak-->
+        <div class="form-group">
+            <label class="lbl">شابک</label>
+            <input type="text" value="@Model.Shabak" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Shabak" class="form-control" name="Shabak" placeholder="شابک" required />
+        </div><hr />
+
+        <!--Writer-->
+        <div class="form-group">
+            <label class="lbl">نویسنده</label>
+            <select id="Writer" name="Writer" required style="width:200px;font-size:14px;font-weight:bold;color:green;padding:5px 0;display:block;margin-top:10px;">
+                <option selected value="@Model.Writer_ID">@Model.TBL_Writer.FullName</option>
+
+                @foreach (var test in ViewBag.Writer)
+                {
+                    <option value="@test.ID">@test.FullName</option>
+                }
+            </select>
+        </div><hr />
+
+        <!--Translator-->
+        <div class="form-group">
+            <label class="lbl">مترجم</label>
+            <select id="Translator" name="Translator" style="width:200px;font-size:14px;font-weight:bold;color:green;padding:5px 0;display:block;margin-top:10px;">
+
+                <option selected value="@Model.Motarjem">@Model.TBL_Translator.Name</option>
+
+                @foreach (var test in ViewBag.Translator)
+                {
+                    <option value="@test.ID">@test.Name</option>
+                }
+            </select>
+        </div><hr />
+
+
+        <input name="ID" value="@Model.Product_ID" style="display:none;" />
+        <!--Entesharat-->
+        <div class="form-group">
+            <label class="lbl">انتشارات</label>
+            <select id="Entesharat" name="Entesharat" style="width:200px;font-size:14px;font-weight:bold;color:green;padding:5px 0;display:block;margin-top:10px;">
+                <option selected value="@Model.Entersharat">@Model.TBL_Entesharat.Entesharat</option>
+                @foreach (var test in ViewBag.Entesharat)
+                {
+                    <option value="@test.ID">@test.Entesharat</option>
+                }
+            </select>
+        </div><hr />
+
+
+
+        <!--Main Image-->
+        <div class="form-group">
+            <label class="lbl">تصویر شاخص</label>
+            <input type="file" name="Fileup" id="Fileup" />
+        </div><hr />
+
+        <!--Small Images-->
+        <!--<div class="form-group">
+        <label class="lbl">تصویر بیشتر 1</label>
+        <input type="file" name="Fileup1" id="Fileup" required />
+    </div><hr />-->
+        <!--Small Images-->
+        <!--<div class="form-group">
+        <label class="lbl">تصویر بیشتر 2</label>
+        <input type="file" name="Fileup2" id="Fileup" required />
+    </div><hr />-->
+        <!--Category-->
+        <div class="form-group">
+            <label class="lbl">دسته بندی</label>
+            <select id="Category" name="Category" style="width:200px;font-size:14px;font-weight:bold;color:green;padding:5px 0;display:block;margin-top:10px;">
+                <option value="@Model.Category_ID">@Model.TBL_Category.Name</option>
+                @foreach (var test in ViewBag.Category)
+                {
+                    <option value="@test.Cate_ID">@test.Name</option>
+                }
+            </select>
+        </div><hr />
+
+
+
+
+
+        <!--Price-->
+        <div class="form-group">
+            <label class="lbl">قیمت</label>
+            <input type="text" value="@Model.Price" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Price" class="form-control" name="Price" placeholder="قیمت" required />
+        </div><hr />
+
+        <div class="form-group">
+            <label class="lbl">تعداد موجودی</label>
+            <input type="text" value="@Model.Quantity" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="amount" class="form-control" name="amount" placeholder="تعداد" required />
+        </div><hr />
+
+
+        @*Discount*@
+        <div class="form-group">
+            <label class="lbl">درصد تخفیف</label>
+            <input value="@Model.Discount_ID" type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Discount" class="form-control" name="Discount" required />
+        </div><hr />
+        <!--Subject-->
+        <div class="form-group">
+            <label class="lbl">موضوع</label>
+            <input type="text" value="@Model.Subject" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Subject" class="form-control" name="Subject" placeholder="موضوع" required />
+        </div><hr />
+
+
+
+
+
+
+        <!--ChapYear-->
+        <div class="form-group">
+            <label class="lbl">سال انتشار</label>
+            <input type="text" value="@Model.ChapYear" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="ChapYear" class="form-control" name="ChapYear" placeholder="سال انتشار" required />
+        </div><hr />
+
+
+        <!--Pages-->
+        <div class="form-group">
+            <label class="lbl">تعداد صفحه</label>
+            <input type="text" value="@Model.Pages" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Pages" class="form-control" name="Pages" placeholder="تعداد صفحه" required />
+        </div><hr />
+
+        <!--ShomareChap-->
+        <div class="form-group">
+            <label class="lbl">شماره چاپ</label>
+            <input type="text" value="@Model.ShomareChap" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="ShomareChap" class="form-control" name="ShomareChap" placeholder="شماره چاپ" required />
+        </div><hr />
+
+        <!--Lenght-->
+        <div class="form-group">
+            <label class="lbl">طول</label>
+            <input type="text" value="@Model.Lenght" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Lenght" class="form-control" name="Lenght" placeholder="طول" required />
+        </div><hr />
+
+        <!--Width-->
+        <div class="form-group">
+            <label class="lbl">عرض</label>
+            <input type="text" value="@Model.Lenght" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Width" class="form-control" name="Width" placeholder="عرض" required />
+        </div><hr />
+
+        <!--Height-->
+        <div class="form-group">
+            <label class="lbl">ارتفاع</label>
+            <input type="text" value="@Model.Height" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Height" class="form-control" name="Height" placeholder="ارتفاع" required />
+        </div><hr />
+
+        <!--Weight-->
+        <div class="form-group">
+            <label class="lbl">وزن</label>
+            <input type="text" value="@Model.Weight" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Weight" class="form-control" name="Weight" placeholder="وزن" required />
+        </div><hr />
+
+
+        <!--Text-->
+        <div class="form-group">
+            <label class="lbl">متن</label>
+            <textarea id="mytextarea" name="mytextarea">@Model.Summery</textarea>
+        </div><hr /><br />
+
+
+        <div class="form-group">
+            <button class="btn btn-danger">تایید</button>
+
+        </div>
+    </div>
+    }
+
+
+</div>
+
+
+@section scripts
+{
+    <script src="~/Content/js/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#mytextarea').ckeditor();
+        });
+    </script>
+}

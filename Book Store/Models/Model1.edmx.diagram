@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2a818f196a04aa88ad20b5ddeef6a75" Name="Diagram1" ZoomLevel="76">
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Category" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Entesharat" Width="1.5" PointX="0.75" PointY="12.875" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Images" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Product" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Translator" Width="1.5" PointX="0.75" PointY="6.75" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Product_TBL_Category" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Product_TBL_Entesharat" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Product_TBL_Translator" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_User" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Comments" Width="1.5" PointX="7.625" PointY="3.375" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Comments_TBL_Product" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Comments_TBL_User" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Orderdetail" Width="1.5" PointX="8.25" PointY="0.75" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Order" Width="1.5" PointX="7.625" PointY="13" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Order_TBL_User" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order1" />
+        <EntityTypeShape EntityType="Bookshop_DBModel.TBL_Writer" Width="1.5" PointX="7.125" PointY="8.625" />
+        <AssociationConnector Association="Bookshop_DBModel.FK_TBL_Product_TBL_Writer" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

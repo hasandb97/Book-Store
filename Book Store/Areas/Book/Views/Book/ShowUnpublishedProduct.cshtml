@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<Book_Store.Models.TBL_Product>
+@{
+    ViewBag.Title = "ShowUnpublishedProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc
+
+
+<div class="container" style="margin-top:50px;">
+    <h3 style="text-align:center;font-weight:bold;margin-bottom:50px;">مدیریت محصولات در انتظار تایید </h3>
+
+
+    <table class="table table-striped" style="margin-top:80px;margin-bottom:100px;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">نام محصول</th>
+                <th scope="col">نویسنده</th>
+                <th scope="col">وضعیت</th>
+                <th scope="col">موجودی</th>
+                <th scope="col">ویرایش</th>
+                <th scope="col">حذف</th>
+                <th scope="col">مشاهده کامل</th>
+            </tr>
+        </thead>
+
+        @{int a = 1;}
+        @foreach (var test in Model)
+        {
+
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;">@a</td>
+
+                    @{ a = a + 1;}
+
+                    <td style="font-weight:bold;">@test.Name</td>
+
+                    <td style="font-weight:bold;">@test.TBL_Writer.FullName</td>
+
+                    @if (@test.Status == 0)
+                    {
+                        <td>@Html.ActionLink("در حال بررسی", "Publishproduct", "Book", new { id = @test.Product_ID }, new { @class = "btn alert-danger btnproducts" })</td>
+
+                    }
+                    else if (@test.Status == 1)
+                    {
+                        <td>@Html.ActionLink("منتشر شده", "Unpublishproduct2", "Book", new { id = @test.Product_ID }, new { @class = "btn alert-info btnproducts" })</td>
+                    }
+
+
+                    <td style="font-weight:bold;">@test.Quantity</td>
+
+                    <td>@Html.ActionLink("ویرایش", "Editprodct", "Book", new { id = @test.Product_ID }, new { @class = "btn alert-success btnproducts" })</td>
+                    <td>@Html.ActionLink("حذف", "Deleteproduct", "Book", new { id = @test.Product_ID }, new { @class = "btn alert-danger btnproducts" })</td>
+
+                    <td>@Html.ActionLink("مشاهده کامل", "Showproduct", "Book", new { id = @test.Product_ID }, new { @class = "btn alert-info btnproducts" })</td>
+
+                </tr>
+
+            </tbody>
+        }
+    </table><br />
+    @Html.PagedListPager(Model, page => Url.Action("ShowAllPostList", new { page, pageSize = Model.PageSize }))
+
+
+</div>  

@@ -1,0 +1,163 @@
+﻿@model Book_Store.Models.TBL_User
+@{
+    ViewBag.Title = "AdminPanel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <br />
+    <h5 style="border:2px solid orange;width:200px;text-align:center;padding:10px;font-weight:bold;border-radius:20px;">@Model.FullName</h5><br /><br />
+
+    <table class="table table-striped">
+
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td style="font-weight:bold;">مدیریت محصولات</td>
+                <td></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>@Html.ActionLink("محصول جدید", "NewBook", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-success" })</td>
+                <td>@Html.ActionLink("همه محصولات", "Showallproduct", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-primary" })</td>
+                <td>@Html.ActionLink("لیست  محصولات منتشر شده", "ShowPublishedProduct", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-info" })</td>
+                <td>@Html.ActionLink("محصولات در انتظار تایید", "ShowUnpublishedProduct", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-danger" })</td>
+
+            </tr>
+
+
+        </tbody>
+
+    </table><hr /><br /><br />
+
+
+   
+
+    <table class="table table-striped">
+
+        <tbody>
+            <tr>
+                <th scope="row">2</th>
+                <td style="font-weight:bold;"> مدیریت نویسندگان    </td>
+                <td></td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>@Html.ActionLink("افزودن نویسنده جدید", "Newwriter", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-success" })</td>
+                <td>@Html.ActionLink("همه نویسندگان", "Showallwriters", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-primary" })</td>
+
+            </tr>
+
+
+        </tbody>
+
+    </table><hr /><br /><br />
+
+
+
+    <table class="table table-striped">
+
+        <tbody>
+            <tr>
+                <th scope="row">3</th>
+                <td style="font-weight:bold;">مدیریت سفارشات</td>
+                <td></td>
+                <td> </td>
+                <td> </td>
+
+                <td> </td>
+
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>@Html.ActionLink("همه سفارشات تایید شده", "Submittedorders", "User", new { Area = "User" }, new { @class = "bgsuccess bg-success" })</td>
+                <td>@Html.ActionLink("سفارشات در انتظار تایید", "Ordertosubmit", "User", new { Area = "User" }, new { @class = "bgsuccess bg-primary" })</td>
+
+            </tr>
+
+
+        </tbody>
+
+    </table><hr /><br /><br />
+
+
+
+    @*check if it is main admin*@
+    @if (Model.FullName == "admin")
+    {
+        <table class="table table-striped">
+
+            <tbody>
+                <tr>
+                    <th scope="row">*</th>
+
+                    <td style="font-weight:bold;">مدیریت ادمین ها</td>
+                    <td></td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>@Html.ActionLink("لیست همه ادمین ها", "Showalladmin", "User", new { Area = "User" }, new { @class = "bgsuccess bg-success" })</td>
+                    <td>@Html.ActionLink("ادمین های تایید شده", "Showactiveadmin", "User", new { Area = "User" }, new { @class = "bgsuccess bg-info" })</td>
+                    <td>@Html.ActionLink("ادمین های در انتظار تایید", "Shownotactivedadmin", "User", new { Area = "User" }, new { @class = "bgsuccess bg-danger" })</td>
+                </tr>
+
+
+            </tbody>
+
+        </table><hr /><br /><br />
+    }
+    <table class="table table-striped">
+
+        <tbody>
+            <tr>
+                <th scope="row">4</th>
+
+                <td style="font-weight:bold;">مدیریت کاربران</td>
+                <td></td>
+                <td> </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>@Html.ActionLink("لیست همه کاربران", "Showallusers", "User", new { Area = "User" }, new { @class = "bgsuccess bg-success" })</td>
+                <td>@Html.ActionLink("کاربران تایید شده", "Showactiveadmin", "User", new { Area = "User" }, new { @class = "bgsuccess bg-info" })</td>
+                <td>@Html.ActionLink("کاربران در انتظار تایید", "Shownotavtiveuser", "User", new { Area = "User" }, new { @class = "bgsuccess bg-danger" })</td>
+            </tr>
+
+
+        </tbody>
+
+    </table><hr /><br /><br />
+
+    <table class="table table-striped">
+
+        <tbody>
+            <tr>
+                <th scope="row">5</th>
+                <td style="font-weight:bold;">مدیریت نظرات</td>
+                <td></td>
+                <td> </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>@Html.ActionLink("لیست همه نظرات", "Showallcomments", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-success" })</td>
+                <td>@Html.ActionLink("نظرات منتشر شده", "Showallactivecomments", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-info" })</td>
+                <td>@Html.ActionLink("نظرات در انتظار تایید", "Showalltoactivecomments", "Book", new { Area = "Book" }, new { @class = "bgsuccess bg-danger" })</td>
+            </tr>
+
+
+        </tbody>
+
+    </table><hr /><br />
+
+
+</div>

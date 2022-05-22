@@ -1,0 +1,753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Bookshop_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_Category">
+          <Key>
+            <PropertyRef Name="Cate_ID" />
+          </Key>
+          <Property Name="Cate_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parent_ID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Comments">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Comment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Comment_Content" Type="nvarchar(max)" />
+          <Property Name="Comment_Status" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Entesharat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Entesharat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Images">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Order">
+          <Key>
+            <PropertyRef Name="Orderid" />
+          </Key>
+          <Property Name="Orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Userid" Type="int" Nullable="false" />
+          <Property Name="Isfinally" Type="int" />
+          <Property Name="Userpayment" Type="int" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Orderdetail">
+          <Key>
+            <PropertyRef Name="Detailid" />
+          </Key>
+          <Property Name="Detailid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Orderid" Type="int" />
+          <Property Name="Productid" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Product">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Weight" Type="int" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Lenght" Type="int" />
+          <Property Name="Cover" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pages" Type="int" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Thumbnail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category_ID" Type="int" />
+          <Property Name="Meta_Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Summery" Type="nvarchar(max)" />
+          <Property Name="Discount_ID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Writer_ID" Type="int" />
+          <Property Name="Shabak" Type="int" />
+          <Property Name="Entersharat" Type="int" />
+          <Property Name="Motarjem" Type="int" />
+          <Property Name="ChapYear" Type="int" />
+          <Property Name="ShomareChap" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Translator">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ostan" Type="nvarchar" MaxLength="50" />
+          <Property Name="Shahr" Type="nvarchar" MaxLength="50" />
+          <Property Name="User_Status" Type="int" />
+          <Property Name="RegisterDate" Type="date" />
+          <Property Name="User_Isactive" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Writer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birthday" Type="int" />
+          <Property Name="Deathdate" Type="int" />
+          <Property Name="Writer_Content" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image_Thumbnail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Iranian" Type="int" />
+        </EntityType>
+        <Association Name="FK_TBL_Comments_TBL_Product">
+          <End Role="TBL_Product" Type="Self.TBL_Product" Multiplicity="1" />
+          <End Role="TBL_Comments" Type="Self.TBL_Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="TBL_Comments">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Comments_TBL_User">
+          <End Role="TBL_User" Type="Self.TBL_User" Multiplicity="0..1" />
+          <End Role="TBL_Comments" Type="Self.TBL_Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="TBL_Comments">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Order_TBL_User">
+          <End Role="TBL_User" Type="Self.TBL_User" Multiplicity="1" />
+          <End Role="TBL_Order" Type="Self.TBL_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="TBL_Order">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Orderdetail_TBL_Order">
+          <End Role="TBL_Product" Type="Self.TBL_Product" Multiplicity="0..1" />
+          <End Role="TBL_Orderdetail" Type="Self.TBL_Orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="TBL_Orderdetail">
+              <PropertyRef Name="Productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Orderdetail_TBL_Order1">
+          <End Role="TBL_Order" Type="Self.TBL_Order" Multiplicity="0..1" />
+          <End Role="TBL_Orderdetail" Type="Self.TBL_Orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Order">
+              <PropertyRef Name="Orderid" />
+            </Principal>
+            <Dependent Role="TBL_Orderdetail">
+              <PropertyRef Name="Orderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Product_TBL_Category">
+          <End Role="TBL_Category" Type="Self.TBL_Category" Multiplicity="0..1" />
+          <End Role="TBL_Product" Type="Self.TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Category">
+              <PropertyRef Name="Cate_ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Product_TBL_Entesharat">
+          <End Role="TBL_Entesharat" Type="Self.TBL_Entesharat" Multiplicity="0..1" />
+          <End Role="TBL_Product" Type="Self.TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Entesharat">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Entersharat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Product_TBL_Translator">
+          <End Role="TBL_Translator" Type="Self.TBL_Translator" Multiplicity="0..1" />
+          <End Role="TBL_Product" Type="Self.TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Translator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Motarjem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Product_TBL_Writer">
+          <End Role="TBL_Writer" Type="Self.TBL_Writer" Multiplicity="0..1" />
+          <End Role="TBL_Product" Type="Self.TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Writer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Writer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bookshop_DBModelStoreContainer">
+          <EntitySet Name="TBL_Category" EntityType="Self.TBL_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Comments" EntityType="Self.TBL_Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Entesharat" EntityType="Self.TBL_Entesharat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Images" EntityType="Self.TBL_Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Order" EntityType="Self.TBL_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Orderdetail" EntityType="Self.TBL_Orderdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Product" EntityType="Self.TBL_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Translator" EntityType="Self.TBL_Translator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_User" EntityType="Self.TBL_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Writer" EntityType="Self.TBL_Writer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_Comments_TBL_Product" Association="Self.FK_TBL_Comments_TBL_Product">
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+            <End Role="TBL_Comments" EntitySet="TBL_Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Comments_TBL_User" Association="Self.FK_TBL_Comments_TBL_User">
+            <End Role="TBL_User" EntitySet="TBL_User" />
+            <End Role="TBL_Comments" EntitySet="TBL_Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Order_TBL_User" Association="Self.FK_TBL_Order_TBL_User">
+            <End Role="TBL_User" EntitySet="TBL_User" />
+            <End Role="TBL_Order" EntitySet="TBL_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Orderdetail_TBL_Order" Association="Self.FK_TBL_Orderdetail_TBL_Order">
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+            <End Role="TBL_Orderdetail" EntitySet="TBL_Orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Orderdetail_TBL_Order1" Association="Self.FK_TBL_Orderdetail_TBL_Order1">
+            <End Role="TBL_Order" EntitySet="TBL_Order" />
+            <End Role="TBL_Orderdetail" EntitySet="TBL_Orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Product_TBL_Category" Association="Self.FK_TBL_Product_TBL_Category">
+            <End Role="TBL_Category" EntitySet="TBL_Category" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Product_TBL_Entesharat" Association="Self.FK_TBL_Product_TBL_Entesharat">
+            <End Role="TBL_Entesharat" EntitySet="TBL_Entesharat" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Product_TBL_Translator" Association="Self.FK_TBL_Product_TBL_Translator">
+            <End Role="TBL_Translator" EntitySet="TBL_Translator" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Product_TBL_Writer" Association="Self.FK_TBL_Product_TBL_Writer">
+            <End Role="TBL_Writer" EntitySet="TBL_Writer" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bookshop_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Bookshop_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_Category" EntityType="Bookshop_DBModel.TBL_Category" />
+          <EntitySet Name="TBL_Entesharat" EntityType="Bookshop_DBModel.TBL_Entesharat" />
+          <EntitySet Name="TBL_Images" EntityType="Bookshop_DBModel.TBL_Images" />
+          <EntitySet Name="TBL_Product" EntityType="Bookshop_DBModel.TBL_Product" />
+          <EntitySet Name="TBL_Translator" EntityType="Bookshop_DBModel.TBL_Translator" />
+          <AssociationSet Name="FK_TBL_Product_TBL_Category" Association="Bookshop_DBModel.FK_TBL_Product_TBL_Category">
+            <End Role="TBL_Category" EntitySet="TBL_Category" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Product_TBL_Entesharat" Association="Bookshop_DBModel.FK_TBL_Product_TBL_Entesharat">
+            <End Role="TBL_Entesharat" EntitySet="TBL_Entesharat" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Product_TBL_Translator" Association="Bookshop_DBModel.FK_TBL_Product_TBL_Translator">
+            <End Role="TBL_Translator" EntitySet="TBL_Translator" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+          <EntitySet Name="TBL_User" EntityType="Bookshop_DBModel.TBL_User" />
+          <EntitySet Name="TBL_Comments" EntityType="Bookshop_DBModel.TBL_Comments" />
+          <AssociationSet Name="FK_TBL_Comments_TBL_Product" Association="Bookshop_DBModel.FK_TBL_Comments_TBL_Product">
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+            <End Role="TBL_Comments" EntitySet="TBL_Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Comments_TBL_User" Association="Bookshop_DBModel.FK_TBL_Comments_TBL_User">
+            <End Role="TBL_User" EntitySet="TBL_User" />
+            <End Role="TBL_Comments" EntitySet="TBL_Comments" />
+          </AssociationSet>
+          <EntitySet Name="TBL_Orderdetail" EntityType="Bookshop_DBModel.TBL_Orderdetail" />
+          <AssociationSet Name="FK_TBL_Orderdetail_TBL_Order" Association="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order">
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+            <End Role="TBL_Orderdetail" EntitySet="TBL_Orderdetail" />
+          </AssociationSet>
+          <EntitySet Name="TBL_Order" EntityType="Bookshop_DBModel.TBL_Order" />
+          <AssociationSet Name="FK_TBL_Order_TBL_User" Association="Bookshop_DBModel.FK_TBL_Order_TBL_User">
+            <End Role="TBL_User" EntitySet="TBL_User" />
+            <End Role="TBL_Order" EntitySet="TBL_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_Orderdetail_TBL_Order1" Association="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order1">
+            <End Role="TBL_Order" EntitySet="TBL_Order" />
+            <End Role="TBL_Orderdetail" EntitySet="TBL_Orderdetail" />
+          </AssociationSet>
+          <EntitySet Name="TBL_Writer" EntityType="Bookshop_DBModel.TBL_Writer" />
+          <AssociationSet Name="FK_TBL_Product_TBL_Writer" Association="Bookshop_DBModel.FK_TBL_Product_TBL_Writer">
+            <End Role="TBL_Writer" EntitySet="TBL_Writer" />
+            <End Role="TBL_Product" EntitySet="TBL_Product" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="TBL_Category">
+          <Key>
+            <PropertyRef Name="Cate_ID" />
+          </Key>
+          <Property Name="Cate_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parent_ID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Product" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Category" FromRole="TBL_Category" ToRole="TBL_Product" />
+        </EntityType>
+        <EntityType Name="TBL_Entesharat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Entesharat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Product" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Entesharat" FromRole="TBL_Entesharat" ToRole="TBL_Product" />
+        </EntityType>
+        <EntityType Name="TBL_Images">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBL_Product">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Weight" Type="Int32" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Lenght" Type="Int32" />
+          <Property Name="Cover" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pages" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Thumbnail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category_ID" Type="Int32" />
+          <Property Name="Meta_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Summery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discount_ID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Writer_ID" Type="Int32" />
+          <Property Name="Shabak" Type="Int32" />
+          <Property Name="Entersharat" Type="Int32" />
+          <Property Name="Motarjem" Type="Int32" />
+          <Property Name="ChapYear" Type="Int32" />
+          <Property Name="ShomareChap" Type="Int32" />
+          <NavigationProperty Name="TBL_Category" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Category" FromRole="TBL_Product" ToRole="TBL_Category" />
+          <NavigationProperty Name="TBL_Entesharat" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Entesharat" FromRole="TBL_Product" ToRole="TBL_Entesharat" />
+          <NavigationProperty Name="TBL_Translator" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Translator" FromRole="TBL_Product" ToRole="TBL_Translator" />
+          <NavigationProperty Name="TBL_Comments" Relationship="Bookshop_DBModel.FK_TBL_Comments_TBL_Product" FromRole="TBL_Product" ToRole="TBL_Comments" />
+          <NavigationProperty Name="TBL_Orderdetail" Relationship="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order" FromRole="TBL_Product" ToRole="TBL_Orderdetail" />
+          <NavigationProperty Name="TBL_Writer" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Writer" FromRole="TBL_Product" ToRole="TBL_Writer" />
+        </EntityType>
+        <EntityType Name="TBL_Translator">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Product" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Translator" FromRole="TBL_Translator" ToRole="TBL_Product" />
+        </EntityType>
+        <Association Name="FK_TBL_Product_TBL_Category">
+          <End Type="Bookshop_DBModel.TBL_Category" Role="TBL_Category" Multiplicity="0..1" />
+          <End Type="Bookshop_DBModel.TBL_Product" Role="TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Category">
+              <PropertyRef Name="Cate_ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Product_TBL_Entesharat">
+          <End Type="Bookshop_DBModel.TBL_Entesharat" Role="TBL_Entesharat" Multiplicity="0..1" />
+          <End Type="Bookshop_DBModel.TBL_Product" Role="TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Entesharat">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Entersharat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Product_TBL_Translator">
+          <End Type="Bookshop_DBModel.TBL_Translator" Role="TBL_Translator" Multiplicity="0..1" />
+          <End Type="Bookshop_DBModel.TBL_Product" Role="TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Translator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Motarjem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ostan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Shahr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Status" Type="Int32" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+          <Property Name="User_Isactive" Type="Int32" />
+          <NavigationProperty Name="TBL_Comments" Relationship="Bookshop_DBModel.FK_TBL_Comments_TBL_User" FromRole="TBL_User" ToRole="TBL_Comments" />
+          <NavigationProperty Name="TBL_Order" Relationship="Bookshop_DBModel.FK_TBL_Order_TBL_User" FromRole="TBL_User" ToRole="TBL_Order" />
+        </EntityType>
+        <EntityType Name="TBL_Comments">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Comment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Comment_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment_Status" Type="Int32" />
+          <NavigationProperty Name="TBL_Product" Relationship="Bookshop_DBModel.FK_TBL_Comments_TBL_Product" FromRole="TBL_Comments" ToRole="TBL_Product" />
+          <NavigationProperty Name="TBL_User" Relationship="Bookshop_DBModel.FK_TBL_Comments_TBL_User" FromRole="TBL_Comments" ToRole="TBL_User" />
+        </EntityType>
+        <Association Name="FK_TBL_Comments_TBL_Product">
+          <End Type="Bookshop_DBModel.TBL_Product" Role="TBL_Product" Multiplicity="1" />
+          <End Type="Bookshop_DBModel.TBL_Comments" Role="TBL_Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="TBL_Comments">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Comments_TBL_User">
+          <End Type="Bookshop_DBModel.TBL_User" Role="TBL_User" Multiplicity="0..1" />
+          <End Type="Bookshop_DBModel.TBL_Comments" Role="TBL_Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="TBL_Comments">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_Orderdetail">
+          <Key>
+            <PropertyRef Name="Detailid" />
+          </Key>
+          <Property Name="Detailid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Orderid" Type="Int32" />
+          <Property Name="Productid" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="TBL_Product" Relationship="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order" FromRole="TBL_Orderdetail" ToRole="TBL_Product" />
+          <NavigationProperty Name="TBL_Order" Relationship="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order1" FromRole="TBL_Orderdetail" ToRole="TBL_Order" />
+        </EntityType>
+        <Association Name="FK_TBL_Orderdetail_TBL_Order">
+          <End Type="Bookshop_DBModel.TBL_Product" Role="TBL_Product" Multiplicity="0..1" />
+          <End Type="Bookshop_DBModel.TBL_Orderdetail" Role="TBL_Orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="TBL_Orderdetail">
+              <PropertyRef Name="Productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_Order">
+          <Key>
+            <PropertyRef Name="Orderid" />
+          </Key>
+          <Property Name="Orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Userid" Type="Int32" Nullable="false" />
+          <Property Name="Isfinally" Type="Int32" />
+          <Property Name="Userpayment" Type="Int32" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_User" Relationship="Bookshop_DBModel.FK_TBL_Order_TBL_User" FromRole="TBL_Order" ToRole="TBL_User" />
+          <NavigationProperty Name="TBL_Orderdetail" Relationship="Bookshop_DBModel.FK_TBL_Orderdetail_TBL_Order1" FromRole="TBL_Order" ToRole="TBL_Orderdetail" />
+        </EntityType>
+        <Association Name="FK_TBL_Order_TBL_User">
+          <End Type="Bookshop_DBModel.TBL_User" Role="TBL_User" Multiplicity="1" />
+          <End Type="Bookshop_DBModel.TBL_Order" Role="TBL_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="TBL_Order">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_Orderdetail_TBL_Order1">
+          <End Type="Bookshop_DBModel.TBL_Order" Role="TBL_Order" Multiplicity="0..1" />
+          <End Type="Bookshop_DBModel.TBL_Orderdetail" Role="TBL_Orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Order">
+              <PropertyRef Name="Orderid" />
+            </Principal>
+            <Dependent Role="TBL_Orderdetail">
+              <PropertyRef Name="Orderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_Writer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="Int32" />
+          <Property Name="Deathdate" Type="Int32" />
+          <Property Name="Writer_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image_Thumbnail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Iranian" Type="Int32" />
+          <NavigationProperty Name="TBL_Product" Relationship="Bookshop_DBModel.FK_TBL_Product_TBL_Writer" FromRole="TBL_Writer" ToRole="TBL_Product" />
+        </EntityType>
+        <Association Name="FK_TBL_Product_TBL_Writer">
+          <End Type="Bookshop_DBModel.TBL_Writer" Role="TBL_Writer" Multiplicity="0..1" />
+          <End Type="Bookshop_DBModel.TBL_Product" Role="TBL_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Writer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_Product">
+              <PropertyRef Name="Writer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Bookshop_DBModelStoreContainer" CdmEntityContainer="Bookshop_DBEntities">
+          <EntitySetMapping Name="TBL_Category">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Category">
+              <MappingFragment StoreEntitySet="TBL_Category">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="Cate_ID" ColumnName="Cate_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Entesharat">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Entesharat">
+              <MappingFragment StoreEntitySet="TBL_Entesharat">
+                <ScalarProperty Name="Entesharat" ColumnName="Entesharat" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Images">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Images">
+              <MappingFragment StoreEntitySet="TBL_Images">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Product">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Product">
+              <MappingFragment StoreEntitySet="TBL_Product">
+                <ScalarProperty Name="ShomareChap" ColumnName="ShomareChap" />
+                <ScalarProperty Name="ChapYear" ColumnName="ChapYear" />
+                <ScalarProperty Name="Motarjem" ColumnName="Motarjem" />
+                <ScalarProperty Name="Entersharat" ColumnName="Entersharat" />
+                <ScalarProperty Name="Shabak" ColumnName="Shabak" />
+                <ScalarProperty Name="Writer_ID" ColumnName="Writer_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Discount_ID" ColumnName="Discount_ID" />
+                <ScalarProperty Name="Summery" ColumnName="Summery" />
+                <ScalarProperty Name="Meta_Title" ColumnName="Meta_Title" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Pages" ColumnName="Pages" />
+                <ScalarProperty Name="Cover" ColumnName="Cover" />
+                <ScalarProperty Name="Lenght" ColumnName="Lenght" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Translator">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Translator">
+              <MappingFragment StoreEntitySet="TBL_Translator">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_User">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_User">
+              <MappingFragment StoreEntitySet="TBL_User">
+                <ScalarProperty Name="User_Isactive" ColumnName="User_Isactive" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="User_Status" ColumnName="User_Status" />
+                <ScalarProperty Name="Shahr" ColumnName="Shahr" />
+                <ScalarProperty Name="Ostan" ColumnName="Ostan" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Comments">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Comments">
+              <MappingFragment StoreEntitySet="TBL_Comments">
+                <ScalarProperty Name="Comment_Status" ColumnName="Comment_Status" />
+                <ScalarProperty Name="Comment_Content" ColumnName="Comment_Content" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Orderdetail">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Orderdetail">
+              <MappingFragment StoreEntitySet="TBL_Orderdetail">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Productid" ColumnName="Productid" />
+                <ScalarProperty Name="Orderid" ColumnName="Orderid" />
+                <ScalarProperty Name="Detailid" ColumnName="Detailid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Order">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Order">
+              <MappingFragment StoreEntitySet="TBL_Order">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Userpayment" ColumnName="Userpayment" />
+                <ScalarProperty Name="Isfinally" ColumnName="Isfinally" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Orderid" ColumnName="Orderid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Writer">
+            <EntityTypeMapping TypeName="Bookshop_DBModel.TBL_Writer">
+              <MappingFragment StoreEntitySet="TBL_Writer">
+                <ScalarProperty Name="Iranian" ColumnName="Iranian" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Image_Thumbnail" ColumnName="Image_Thumbnail" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Writer_Content" ColumnName="Writer_Content" />
+                <ScalarProperty Name="Deathdate" ColumnName="Deathdate" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

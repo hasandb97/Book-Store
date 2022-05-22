@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<Book_Store.Models.TBL_User>
+
+@{
+    ViewBag.Title = "Showactiveadmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc
+
+
+
+<div class="container" style="margin-top:50px;">
+    <h3 style="text-align:center;font-weight:bold;margin-bottom:50px;">مدیریت ادمین های تایید شده</h3>
+
+    <table class="table table-striped" style="margin-top:80px;margin-bottom:100px;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">نام</th>
+                <th scope="col">ایمیل</th>
+                <th scope="col">وضعیت کاربر</th>
+                <th scope="col">حذف</th>
+                <th scope="col">نمایش</th>
+
+
+            </tr>
+        </thead>
+
+        @{int a = 1;}
+        @foreach (var test in Model)
+        {
+
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;">@a</td>
+
+                    @{ a = a + 1;}
+
+                    <td style="font-weight:bold;">@test.FullName</td>
+
+                    <td style="font-weight:bold;">@test.Email</td>
+
+                    @if (@test.User_Isactive == 0)
+                    {
+                        <td>@Html.ActionLink("در حال بررسی", "Activeuser", "User", new { id = @test.User_ID }, new { @class = "btn alert-danger btnproducts" })</td>
+
+                    }
+                    else if (@test.User_Isactive == 1)
+                    {
+                        <td>@Html.ActionLink("فعال", "Activeuser", "User", new { id = @test.User_ID }, new { @class = "btn alert-info btnproducts" })</td>
+                    }
+
+
+
+                    <td>@Html.ActionLink("حذف", "Deleteuser", "User", new { id = @test.User_ID }, new { @class = "btn alert-danger btnproducts" })</td>
+
+                    <td>@Html.ActionLink("مشاهده کامل", "ShowPostToAdmin", "Post", new { id = @test.User_ID }, new { @class = "btn alert-info btnproducts" })</td>
+
+                </tr>
+
+            </tbody>
+        }
+    </table><br />
+    @Html.PagedListPager(Model, page => Url.Action("ShowAllPostList", new { page, pageSize = Model.PageSize }))
+
+
+</div>

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Adminlogin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin:0 auto;margin-top:80px;">
+    @using (Html.BeginForm("Adminlogin", "User", FormMethod.Post, new { @class = "Frm" }))
+    {
+        <h4 style="color:green;text-align:center;font-weight:bold;">@ViewBag.RegsiterCompleted</h4>
+        <h4 style="color:orangered;text-align:center;font-weight:bold;">@ViewBag.LoginError</h4>
+        <h4 style="color:orangered;text-align:center;font-weight:bold;">@ViewBag.AccountSuspend</h4>
+
+        <h2 style="text-align:center;color:#05123f;font-weight:bold;"> فرم ورود به حساب <span style="color:darkorange">ادمین ها</span></h2><br />
+        <p style="color:black">لطفا اطلاعات خود را با دقت وارد نمایید</p>
+        <div class="form-group">
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="phone" class="form-control" name="Phone" placeholder="شماره همراه" required />
+        </div>
+        <div class="form-group">
+            <input type="password" style="max-width:100% !important;margin:0 auto;margin-top:20px;" id="Password" class="form-control" name="Password" placeholder="کلمه عبور" required /><br />
+            <button class="btn btn-danger">تایید</button>
+            @Html.ActionLink("حساب کاربری ندارید؟", "AdminRegister", new { Controller = "User" }, new { @class = "message-alert" })
+
+        </div>
+    }
+</div>

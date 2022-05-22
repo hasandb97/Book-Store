@@ -1,0 +1,128 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Easy Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Content/style/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/style/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/style/owl.theme.default.css" rel="stylesheet" />
+    <link href="~/Content/style/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="social">
+        <ul>
+            <li><a href=""><i class="fa fa-instagram"></i></a></li>
+            <li><a href=""><i class="fa fa-send"></i></a></li>
+            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+        </ul>
+    </div>
+    <!---------------------------------->
+    <div class="top2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="login" style="margin:0 auto;padding:10px 0;">
+                       <h4 style="text-align:center;color:green;font-weight:bold;">فروشگاه کتاب نادری</h4> 
+                    </div>
+                </div>
+                @*<div class="col-md-6">
+                    <form action="">
+                        <input type="text" placeholder="کالای مورد نظر را جستجو کنید">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--top2-->
+    <!---------------------------------->
+    <div class="main-menu" style="padding:12px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+
+                        <li>@Html.ActionLink("خانه", "Index", "Home", new { Area = "" }, null)</li>
+                        <li>@Html.ActionLink("همه محصولات", "Allproducts", "Home", new { Area = "" }, null)</li>
+                        <li>@Html.ActionLink("حساب کاربران", "UserLogin", "User", new { Area = "User" }, null)</li>
+                        <li>@Html.ActionLink("حساب ادمین ها", "Adminlogin", "User", new { Area = "User" }, null)</li>
+
+
+
+                        <li class="logoutli">@Html.ActionLink("خروج", "AdminLogout", "User", new { Area = "User" }, new { @class = "logout" })</li>
+
+
+
+                        @using (Html.BeginForm("Searchproduct", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <li><input class="form-control" name="Name" id="Name" placeholder="کتاب مورد نظر خود را جستجو کنید" type="text" style="font-size:13px;;margin-top:0px;margin-top:5px;margin-right:150px;" /></li>
+
+                            <li><input class="form-control" type="submit" style="margin-right:160px;width:80px;margin-top:5px;font-size:13px;font-weight:bold;" value="جستجو" /></li>
+                            
+                        }
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!---------------------------------->
+
+    @RenderBody()
+
+    <!---------------------------------->
+    <div class="copy-right">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    &copy;&nbsp;&nbsp;فروشگاه نادری&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="~/Content/js/jquery-3.3.1.js"></script>
+    <script src="~/Content/js/jquery.simple.timer.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/js.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

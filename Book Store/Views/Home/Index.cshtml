@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="slider-box">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="col-md-6" style="padding-top: 20px;">
+                                <h4>فروشگاه کتاب نادری</h4>
+                                <span>خدمات 24 ساعته</span>
+                                <p>فروش انواع کتاب های فارسی و لاتین به صورت آنلاین  ارسال رایگان به تمام نقاط کشور از طریق پشت پیشتاز</p>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="~/Content/img/Products/49e32e4d-7913-4ab0-8dda-c99d1eb0e16dSmall1.jpg" class="w-75">
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <!--slider-box-->
+        </div>
+    </div>
+</div>
+<!---------------------------------->
+
+
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="coopen">
+                <img src="~/Content/img/coopen.png" class="w-100" />
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="vizheh">
+                <div class="col-md-6">
+                    <div class="vizheh-img">
+                        <img src="~/Content/img/p20lite-listimage-black.png" class="w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="vizheh-content">
+                        <div><del>729,000 تومان</del></div>
+                        <h4>685,000 تومان</h4>
+                        <h3>Huawei Tab Y300G2</h3>
+                        <ul>
+                            <li>حافظه داخلی 32 گیگابایت</li>
+                            <li>دوربین 13 مگاپیکسل</li>
+                        </ul>
+                        <hr>
+                        <span>زمان باقیمانده تا پایان سفارش</span>
+                        <div class="counter" data-minutes-left="1000"></div>
+                    </div>
+                </div>
+                <div class="vizheh-tag">
+                    <span>فرصت ویژه</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!---------------------------------->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="one-slider">
+                <h3 style="text-align:center;font-weight:bold;margin-top:100px;">جدیدترین کتاب های داخلی </h3><br />
+                <div class="owl-carousel owl-theme ov1">
+
+                    @foreach (var temp in ViewBag.latespro)
+                    {
+
+                        if( temp.TBL_Writer.Iranian == 1)
+                        {
+                    <div class="item">
+                        <figure>
+                            <a href="/Book/Book/Showproduct/@temp.Product_ID"><img src="~/Content/img/Products/@temp.Image" class="w-100" /></a>
+                        </figure>
+                        <h5 style="font-weight:bold;font-size:18px;">@temp.Name</h5>
+
+
+                        @{
+                            if (@temp.Discount_ID == 0)
+                            {
+                                <span style="color:darkslategrey">@temp.Price تومان</span><br /><br />
+                            }
+
+                            else
+                            {
+                                <span style="color: darkslategrey; text-decoration: line-through;" ;>@temp.Price تومان</span>
+                                <span style="color: white; background-color: #EF394E;font-size:13px;padding:3px 5px;border-radius:10px;">%@temp.Discount_ID</span>
+                                <br />
+
+                                <span style="color: darkslategrey;font-weight:bold;"> @Convert.ToInt32((temp.Price - (temp.Price * temp.Discount_ID / 100)))</span>
+                            }
+                        }
+
+
+                        <br /><br />
+                        <span style="font-size:13px;font-weight:bold;border:1px solid orange;padding:5px 10px;border-radius:10px;;text-align:center;color:black;margin-bottom:100px;">موجودی: @temp.Quantity</span><br /><br />
+                        @Html.ActionLink("افزودن به سبد خرید", "Addtocart", "User", new { id = @temp.Product_ID, Area = "User" }, new { @class = "btn alert-success btnproducts" })
+                    </div>
+                       }
+
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------------------->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="one-slider">
+                <h3 style="text-align:center;font-weight:bold;margin-top:100px;">جدیدترین آثار بین الملی </h3><br />
+                                                                                                              <div class="owl-carousel owl-theme ov1">
+
+                                                                                                                  @foreach (var temp in ViewBag.latespro)
+                                                                                                                  {
+
+                                                                                                                      if (temp.TBL_Writer.Iranian == 0)
+                                                                                                                      {
+                                                                                                                          <div class="item">
+                                                                                                                              <figure>
+                                                                                                                                  <a href="/Book/Book/Showproduct/@temp.Product_ID"><img src="~/Content/img/Products/@temp.Image" class="w-100" /></a>
+                                                                                                                              </figure>
+                                                                                                                              <h5 style="font-weight:bold;font-size:18px;">@temp.Name</h5>
+
+
+                                                                                                                              @{
+                                                                                                                                  if (@temp.Discount_ID == 0)
+                                                                                                                                  {
+                                                                                                                                      <span style="color:darkslategrey">@temp.Price تومان</span><br /><br />
+                                                                                                                                  }
+
+                                                                                                                                  else
+                                                                                                                                  {
+                                                                                                                                      <span style="color: darkslategrey; text-decoration: line-through;" ;>@temp.Price تومان</span>
+                                                                                                                                      <span style="color: white; background-color: #EF394E;font-size:13px;padding:3px 5px;border-radius:10px;">%@temp.Discount_ID</span>
+                                                                                                                                      <br />
+
+                                                                                                                                      <span style="color: darkslategrey;font-weight:bold;"> @Convert.ToInt32((temp.Price - (temp.Price * temp.Discount_ID / 100)))</span>
+                                                                                                                                  }
+                                                                                                                              }
+
+
+                                                                                                                              <br /><br />
+                                                                                                                              <span style="font-size:13px;font-weight:bold;border:1px solid orange;padding:5px 10px;border-radius:10px;;text-align:center;color:black;margin-bottom:100px;">موجودی: @temp.Quantity</span><br /><br />
+                                                                                                                              @Html.ActionLink("افزودن به سبد خرید", "Addtocart", "User", new { id = @temp.Product_ID, Area = "User" }, new { @class = "btn alert-success btnproducts" })
+                                                                                                                          </div>
+                                                                                                                      }
+
+
+                                                                                                                  }
+
+
+                                                                                                              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="book-baner">
+                <a href="#"><img src="~/Content/img/book-baner.jpg" class="w-100" /></a>
+                <h4>کتاب های کنکور</h4>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+<div class="tab-box">
+  
+   
+</div>
+    
+<!---------------------------------->

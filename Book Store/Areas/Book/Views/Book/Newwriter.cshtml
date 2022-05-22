@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Newwriter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" style="margin-top:10px;">
+
+    @using (Html.BeginForm("Newwriter", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="Frm" id="AddProductForm">
+
+        <h4 style="font-weight:bold;color:green;text-align:center;margin-top:00px;">@ViewBag.WritreAdded</h4><br />
+        <h4 style="font-weight:bold;text-align:center;margin-top:50px;">افزودن نویسنده جدبد به لیست</h4><br />
+        <p style="color:black">لطفا فیلدهای مربوطه را با اطلاعات مناسب پر کنید.</p>
+
+        <!--Name-->
+        <div class="form-group">
+            <label class="lbl">نام و نام خانوادگی</label>
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Writername" class="form-control" name="Writername" required />
+        </div><hr />
+
+
+
+        <label class="lbl" style="margin-left:50px;">آیا نویسنده ایرانی است؟</label>
+        <input  value="Yes" name="Nationalityradio" style="display:inline-block;margin-top:10px;" type="radio" /> <p style="font-weight:bold;display:inline-block">بله</p>
+        <input   value="No" name="Nationalityradio" style="display:inline-block;margin-top:10px;margin-right:100px;" type="radio" /> <p style="font-weight:bold;display:inline-block">خیر</p>
+
+        <hr />
+        <!--Shabak-->
+        <div class="form-group">
+            <label class="lbl">ملیت</label>
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Nationality" class="form-control" name="Nationality" required />
+        </div><hr />
+
+
+
+
+        <div class="form-group">
+            <label class="lbl"> درباره نویسنده</label>
+            <textarea class="form-control" rows="5" name="Aboutwriter" id="Aboutwriter"></textarea>
+        </div><hr />
+
+
+        <input type="submit" value="تایید" class="btn btn-success" />
+
+
+    </div>
+
+
+    }
+
+
+</div>
+
+

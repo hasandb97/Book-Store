@@ -1,0 +1,75 @@
+﻿@model PagedList.IPagedList<Book_Store.Models.TBL_Product>
+@{
+    ViewBag.Title = "Allproducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc
+
+
+<div class="container2" style="width:90% !important;margin:0 auto;text-align:center">
+    <h2 style="margin:0 auto;text-align:center;font-weight:bold;margin-top:50px;">لیست همه ی محصولات</h2><br /><br />
+    
+    
+
+    <div class="Category" style="display:inline-block;width:20%;vertical-align:top;">
+        <h4 style="text-align:center;font-weight:bold;">دسته بندی کتاب ها</h4>
+        @Html.Raw(ViewBag.Mycat)
+
+    </div>
+    
+    
+    <div class="" style="width:75%; display:inline-block;vertical-align:top;">
+
+        @foreach (var temp in Model)
+        {
+        <div class="col-lg-3 col-md-3 col-sm-3" style="display:inline-block;text-align:right">
+
+            <a style="display:block" href="~/Book/Book/Showproduct/@temp.Product_ID">
+
+                <div class="blog-content">
+                    
+                    <figure style="text-align:center">
+                        <img src="~/Content/img/Products/@temp.Image" class="" width="85%" height="250px" style="margin:0 auto">
+                    </figure><br /><br />
+                    <h5 style="color:black;">@temp.Meta_Title</h5><br />
+
+
+                    @{
+                        if (@temp.Discount_ID == 0)
+                        {
+                            <span style="color:darkslategrey;font-size:15px;font-weight:bold;">@temp.Price تومان</span><br /><br />
+                        }
+
+                        else
+                        {
+
+                            
+                            <span style="color: darkslategrey; text-decoration: line-through;" ;>@temp.Price تومان</span>
+                            <span style="color: white; background-color: #EF394E;font-size:13px;padding:3px 5px;border-radius:10px;">%@temp.Discount_ID</span>
+                            <br />
+
+                            <span style="color: darkslategrey;font-weight:bold;font-size:15px;"> @Convert.ToInt32((temp.Price - (temp.Price * temp.Discount_ID / 100)))</span>
+                        }
+                    }
+
+
+                    <br /><br />
+                    <span style="font-size:13px;font-weight:bold;border:1px solid orange;padding:5px 10px;border-radius:10px;;text-align:center;color:black;margin-bottom:100px;">موجودی: @temp.Quantity</span><br /><br />
+                    @Html.ActionLink("افزودن به سبد خرید", "Addtocart", "User", new { id = @temp.Product_ID, Area = "User" }, new { @class = "btn alert-success btnproducts" })
+                    <ul>
+                        <li style="font-weight:bold;color:black"><i class="fa fa-user-o"></i>نویسنده :@temp.TBL_Writer.FullName</li>
+                        <li style="font-weight:bold;color:black;"><i class="fa fa-bars"></i>دسته بندی : @temp.TBL_Category.Name</li>
+
+                    </ul>
+                </div>
+            </a>
+
+
+        </div>
+        }
+
+
+    </div>
+    @Html.PagedListPager(Model, page => Url.Action("ShowAllPostList", new { page, pageSize = Model.PageSize }))
+
+</div>

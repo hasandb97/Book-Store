@@ -1,0 +1,81 @@
+﻿
+@model Book_Store.Models.TBL_Writer
+@{
+    ViewBag.Title = "EditWriter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChangeWriterStatus</h2>
+
+<div class="container" style="margin-top:10px;">
+
+    @using (Html.BeginForm("EditWriter", "Writer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="Frm" id="AddProductForm">
+        <h4 style="font-weight:bold;text-align:center;margin-top:50px;">ویرایش نویسنده</h4><br />
+        <p style="color:black;font-size:15px;font-weight:bold;color:orange;">لطفا فیلدهای مربوطه را با اطلاعات مناسب پر کنید.</p>
+
+        <!--ID-->
+        <input type="text" style="display:none" value="@Model.ID" name="TID" />
+        <!--Name-->
+        <div class="form-group">
+            <label class="lbl">نام کامل نویسنده</label>
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Name" class="form-control" name="Name" value="@Model.FullName" required />
+        </div><hr />
+
+        <!--Nationality-->
+        <div class="form-group">
+            <label class="lbl">ملیت </label>
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Nationality" class="form-control" name="Nationality" value="@Model.Nationality" required />
+        </div><hr />
+
+        <!--Writer-->
+        <div class="form-group">
+            <label class="lbl">سال تولد</label>
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="BirthDay" class="form-control" name="BirthDay" value="@Model.Birthday" required />
+        </div><hr />
+
+        <!--DeathTime-->
+        <div class="form-group">
+            <label class="lbl">سال وفات</label>
+            <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="DeathTime" class="form-control" name="DeathTime" value="@Model.Birthday" required />
+        </div><hr />
+
+
+
+        <!--Image-->
+        <div class="form-group">
+            <label class="lbl">تصویر شاخص</label>
+            <input type="file" name="Fileup" id="Fileup" />
+        </div><hr />
+
+
+        <!--Content-->
+        <div class="form-group">
+            <label class="lbl">متن</label><br />
+            <textarea id="mytextarea" name="mytextarea">@Model.Writer_Content</textarea>
+        </div><hr /><br />
+
+
+        <div class="form-group">
+            <button class="btn btn-danger">تایید</button>
+
+        </div>
+    </div>
+    }
+
+
+</div>
+
+
+@section scripts
+{
+    <script src="~/Content/js/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#mytextarea').ckeditor();
+        });
+    </script>
+}

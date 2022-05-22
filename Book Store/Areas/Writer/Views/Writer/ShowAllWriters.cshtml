@@ -1,0 +1,59 @@
+﻿@model PagedList.IPagedList<Book_Store.Models.TBL_Writer>
+@{
+    ViewBag.Title = "AllWriters";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using PagedList.Mvc
+
+
+<div class="container" style="margin-top:50px;">
+    <h3 style="text-align:center;font-weight:bold;margin-bottom:50px;">مدیریت نویسنده ها </h3>
+
+
+    <table class="table table-striped" style="margin-top:80px;margin-bottom:100px;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">نام و نام خانوادگی</th>
+                <th scope="col"> وضعیت نمایش</th>
+                <th scope="col">  تغییر وضعیت نمایش</th>
+                <th scope="col">ویرایش</th>
+
+                <th scope="col">حذف</th>
+                <th scope="col">جزئیات</th>
+            </tr>
+        </thead>
+        @foreach (var test in Model)
+        {
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;">@test.ID</td>
+                    <td style="font-weight:bold;">@test.FullName</td>
+
+                    @if (@test.Status == 0)
+                    {
+                        string Stat = "در حال بررسی";
+                        <td style="font-weight:bold;">@Stat</td>
+                    }
+                    else if (@test.Status == 1)
+                    {
+                        string Stat = "ثبت شده";
+                        <td style="font-weight:bold;">@Stat</td>
+                    }
+                    <td>@Html.ActionLink("تغییر", "ChangeWriterStatus", "Writer", new { id = @test.ID }, new { @class = "btn alert-info" })</td>
+                    <td>@Html.ActionLink("ویرایش", "EditWriter", "Writer", new { id = @test.ID }, new { @class = "btn alert-success" })</td>
+
+                    <td>@Html.ActionLink("حذف", "DeleteUser", "Admin", new { id = @test.ID }, new { @class = "btn alert-danger" })</td>
+                    <td>@Html.ActionLink("مشاهده کامل", "ShowWriterDetail", "Writer", new { id = @test.ID }, new { @class = "btn alert-info" })</td>
+
+                </tr>
+
+            </tbody>
+        }
+    </table><br />
+    @Html.PagedListPager(Model, page => Url.Action("ShowAllWriters", new { page, pageSize = Model.PageSize }))
+
+
+
+</div>

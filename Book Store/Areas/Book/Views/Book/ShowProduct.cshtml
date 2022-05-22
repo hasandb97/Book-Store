@@ -1,0 +1,136 @@
+﻿@model Book_Store.Models.TBL_Product
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@ViewBag.Name
+<br />
+@ViewBag.Phone
+@ViewBag.List
+@ViewBag.res
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="single-box">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h4 style="font-weight:bold;color:black;">@Model.Name</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="single-content-right">
+                                    <span style="font-size:15px; font-weight:bold;color:orange">مشخصات مختصر محصول </span><br>
+                                    <ul class="product-ul">
+                                        <li>کد کالا : @Model.Code</li>
+                                        <li> شابک : @Model.Shabak</li>
+                                        <li>نویسنده : @Model.TBL_Writer.FullName</li>
+                                        <li>انتشارات : @Model.TBL_Entesharat.Entesharat</li>
+                                        <li>موضوع : @Model.Subject</li>
+                                        <li>سال انتشار : @Model.ChapYear</li>
+                                        <li>تعداد صفحه : @Model.Pages</li>
+                                        <li>شماره چاپ : @Model.ShomareChap</li>
+                                        <li>طول : @Model.Lenght</li>
+                                        <li>عرض : @Model.Width</li>
+                                        <li>ارتفاع : @Model.Height</li>
+                                        <li>وزن : @Model.Weight</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="single-content-left">
+                                    <ul>
+                                        @if (Model.Quantity > 0)
+                                        {
+                                            <span style="font-weight:bold;color:orangered">موجودی : @Model.Quantity</span>
+                                        }
+
+                                        <br />
+                                        <br />
+                                        <li style="font-size:15px; font-weight:bold;margin-bottom:50px;">دسته بندی : @Model.TBL_Category.Name</li>
+                                        @{
+                                            if (Model.Discount_ID == 0)
+                                            {
+                                                <h4 style="font-weight:bold">@Model.Price تومان</h4>
+                                            }
+                                            else
+                                            {
+                                                <h4 style="font-weight: bold;display:inline-block; text-decoration: line-through">@Model.Price تومان</h4>
+                                                <span style="color: white; background-color: #EF394E;font-size:13px;padding:3px 5px;border-radius:10px;">%@Model.Discount_ID</span>
+
+                                                <h4 style="font-weight: bold;">@Convert.ToInt32((Model.Price - (Model.Price * Model.Discount_ID / 100))) تومان</h4>
+
+                                            }
+                                        }
+
+
+                                        <div class="btn-single">
+                                            <a href="~/User/User/Addtocart/@Model.Product_ID" style="font-size:14px;font-weight:bold"><i class="fa fa-cart-plus"></i>افزودن به سبد </a>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="single-img">
+                            <figure>
+                                <img src="~/Content/img/Products/@Model.Image" class="w-100 s-img" data-zoom-image="img/single-tablet.jpg">
+                            </figure>
+                        </div>
+                        
+                    </div>
+
+                    <div style="width:95%;margin:0 auto;margin-top:50px;">
+                        @Html.Raw(Model.Summery)
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------   Comments -------------------->
+<div class="col-9" style="margin:0 auto;margin-top:100px;">
+
+    @if (Session["UserLogined"] == "True")
+    {
+
+        using (@Html.BeginForm("NewComment", "Book", new { @id = Model.Product_ID }, FormMethod.Post, new { @class = "FRMCOMMENT" }))
+        {
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h3>ثبت نظر</h3>
+                <form>
+
+                    <textarea placeholder="متن نظر" name="Txt" id="" class="form-control textarea-comments" rows="5"></textarea><br />
+                    <input id="btn-submit2" value="تایید" type="submit">
+                </form>
+            </div>
+        }
+        <hr />
+
+    }
+    else
+    {
+        <h6 style="font-weight:bold;color:orangered;text-align:center;margin:30px 0 ;">@Html.ActionLink("برای ثبت نظر باید وارد حساب کاربری خود شوید", "UserLogin", "User", new { Area = "User" }, new { @class = "H-Comments" })</h6>
+    }
+
+    <hr />
+    <h5 style="font-weight:bold;text-align:right;color:orange">نظرات</h5>
+
+    @foreach (var temp in ViewBag.Comments)
+    {
+        <div class="col-11" style="margin:0 auto">
+            <p style="display:inline-block;font-weight:bold;color:blue;margin-right:10px;"> @temp.TBL_User.FullName :</p><br />
+            <p style="display:inline-block;margin-right:10px;">@temp.Comment_Content</p><br />
+            <hr />
+
+        </div>
+
+    }
+    <hr />
+</div>
+
+

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Book_Store.Models.TBL_Orderdetail>
+
+@{
+    ViewBag.Title = "Mycart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+<div class="container" style="margin-top:50px;">
+    <h3 style="text-align:center;font-weight:bold;margin-bottom:50px;">سبد خرید</h3>
+
+    <table class="table table-striped" style="margin-top:80px;margin-bottom:100px;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">نام</th>
+                <th scope="col">تعداد</th>
+                <th scope="col">قیمت واحد</th>
+                <th scope="col">مجموع</th>
+                <th scope="col">حذف 1 مورد</th>
+                <th scope="col">افزودن 1 مورد</th>
+                <th scope="col">حذف کامل</th>
+
+
+
+            </tr>
+        </thead>
+
+        @{int a = 1;}
+        @{int sum = 0;}
+        @{ int Total = 0;}
+        @foreach (var test in Model)
+        {
+
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;">@a</td>
+
+                    @{ a = a + 1;}
+
+                    <td style="font-weight:bold;">@test.TBL_Product.Name</td>
+
+                    <td style="font-weight:bold;">@test.Count</td>
+                    <td style="font-weight:bold;">@test.Price تومان</td>
+                   
+                    @{ 
+                        if(test.TBL_Product.Discount_ID == 0)
+                        {
+                            sum = Convert.ToInt32(test.Price * test.Count);
+                        }
+
+                        else
+                        {
+                            sum = Convert.ToInt32(   (test.Price -(test.Price*test.TBL_Product.Discount_ID/100))      * test.Count );
+                        }
+
+
+                        Total += sum;}
+                    <td style="font-weight:bold;">@sum </td>
+
+                    <td>@Html.ActionLink("1 -", "Deleteonepro", "User", new { id = @test.Detailid, Area = "User" }, new { @class = "btn alert-danger btnproducts" })</td>
+                    <td>@Html.ActionLink("1 +", "Addonetopro", "User", new { id = @test.Detailid }, new { @class = "btn alert-success btnproducts" })</td>
+                    <td>@Html.ActionLink("حذف", "Deletewholepro", "User", new { id = @test.Detailid }, new { @class = "btn alert-danger btnproducts" })</td>
+
+                </tr>
+
+            </tbody>
+        }
+    </table>
+
+    <hr />
+    <div class="row" style="margin-bottom:50px;">
+        <div class="col-5" style="margin:0 auto;text-align:center;">
+            <p style="font-size:25px;font-weight:bold;display:inline-block;margin-left:20px;margin-top:20px;;">جمع کل : @Total</p>
+
+
+            <hr />
+        </div>
+
+    </div>
+
+
+    @if (Total != 0)
+    {
+
+        using (Html.BeginForm("Payment", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="Frm" id="AddProductForm">
+                <h4 style="font-weight:bold;color:green;text-align:center;margin-top:10px;">@ViewBag.WritreAdded</h4><br />
+                <h5 style="font-weight:bold;text-align:center;margin-top:0px;">جهت تکمیل سفارش، فیلدهای زیر را پر کنید</h5><br />
+                <p style="color:black">لطفا فیلدهای مربوطه را با اطلاعات مناسب پر کنید.</p>
+
+                <input style="display:none" type="text" name="id" id="id" value="@ViewBag.Userid" />
+                <!--State-->
+                <div class="form-group">
+                    <label class="lbl">استان</label>
+                    <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="State" class="form-control" name="State"  required />
+                </div><hr />
+                <div class="form-group">
+                    <label class="lbl">شهر</label>
+                    <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="City" class="form-control" name="City" required />
+                </div><hr />
+
+                <div class="form-group">
+                    <label class="lbl">آدرس کامل</label>
+                    <textarea class="form-control" style="margin-top:20px;" name="Customeraddress" id="Customeraddress"></textarea>
+                </div><hr />
+
+                <div class="form-group">
+                    <label class="lbl">شماره تلفن گیرنده</label>
+                    <input type="text" style="max-width:100% !important;margin:0 auto;margin-top:10px;" id="Customerphone" class="form-control" name="Customerphone"  required />
+                </div><hr />
+
+
+                <input type="submit" value="تایید" class="alert-success btn" style="padding:5px 30px;" />
+
+            </div>
+        }
+
+    }
+
+
+
+

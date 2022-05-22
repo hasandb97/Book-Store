@@ -1,0 +1,45 @@
+﻿@model Book_Store.Models.TBL_User
+@{
+    ViewBag.Title = "UserPanel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <br />
+    <h5 style="border:2px solid orange;width:200px;text-align:center;padding:10px;font-weight:bold;border-radius:20px;">@Model.FullName</h5><br /><br />
+
+
+    <table class="table table-striped">
+       
+        <tbody>
+            <tr>
+                <td>@Html.ActionLink("سبد خرید", "Mycart", "User", new { @id = Model.User_ID, Area = "User" }, new { @class = "Userpanelcolor" })</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("خریدهای در انتظار تایید مدیر", "Shoppingstatus", "User", new { @id = Model.User_ID, Area = "User" }, new { @class = "Userpanelcolor" })</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            
+            <tr>
+                <td>@Html.ActionLink("تاریخچه ی خرید های موفق من ", "Shopinghistory", "User", new { @id = Model.User_ID, Area = "User" }, new { @class = "Userpanelcolor" })</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+          
+        </tbody>
+    </table>
+
+
+
+
+
+
+</div>
